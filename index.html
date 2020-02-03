@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Class Mate</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="http://jabont.com/jayss/jayss.css">
+	<style>
+		.mobile{
+			width: 100%;
+			min-width: 320px;
+			max-width: 450px;
+			margin: auto;
+			min-height: 500px;
+			position: relative;
+		}
+
+	</style>
+</head>
+<body class="bg-black">
+	<div class="mobile bg-white">
+		<div class="padding bg-amber pst -fx -top -left wide t-center" id="head">
+			<h1>Random student</h1>
+		</div>
+		<sp class="l"></sp>
+		<sp class="xl"></sp>
+		<div class="padding" id="content">
+<!-- 			<input type="text" name="" class="student-input wide" placeholder="Insert student name."> -->
+
+			<div id="theInputGroup">
+				<h2>No Student</h2>
+
+			</div>
+			<sp class='l'></sp>
+
+			<button class="wide bg-amber" onclick="addMore()">Add Student</button>
+		</div>
+		<div class="bg-lightblue pst -ab -bottom -left wide" onclick="randomStudent()" id='panel'>
+			<h1 class="t-center">Random me</h1>
+		</div>
+
+	</div>
+	<script type="text/javascript">
+		allStudent = [];
+		function addMore(){
+			let thisStudent = prompt("Insert student name")
+			if (thisStudent != null){
+				allStudent.push(thisStudent)
+				// console.log(allStudent);
+				displayStudent()
+			}
+		}
+
+		function displayStudent(){
+			theInputGroup.innerHTML = ""; // clear no student
+			let i =1;
+
+			for(student of allStudent){
+				theInputGroup.innerHTML += 
+					 `<div class="bg-amber-1 padding wide" ondblclick="removeStudent(${i-1})">${i} ${student}</div> <sp class="l"></sp>`; // add student name
+					 i += 1
+			}
+		}
+
+		function randomStudent(){
+			let rand = Math.floor(Math.random() * allStudent.length)
+			alert(`Who is ${allStudent[rand]} ?`)
+		}
+
+		function removeStudent(index){
+			console.log(allStudent[index-1])
+			removed = allStudent.splice(index, 1)
+			displayStudent();
+		}
+	</script>
+</body>
+</html>
